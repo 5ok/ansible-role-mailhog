@@ -4,6 +4,7 @@ After=syslog.target network.target
 
 [Service]
 Type=simple
+EnvironmentFile={{ mailhog_install_dir }}/env.mailhog
 ExecStart={{ mailhog_install_dir }}/mailhog
 StandardOutput=journal
 Restart=on-failure
