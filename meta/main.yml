@@ -1,12 +1,10 @@
 ---
-dependencies:
-  - geerlingguy.daemonize
-
 galaxy_info:
   role_name: mailhog
-  author: geerlingguy
+  namespace: 5ok
   description: "MailHog for Linux"
-  company: "Midwestern Mac, LLC"
+  author: Peter Hudec
+  company: "5ko s.r.o."
   license: "license (BSD, MIT)"
   min_ansible_version: 2.4
   platforms:

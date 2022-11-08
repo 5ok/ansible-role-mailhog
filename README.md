@@ -1,7 +1,5 @@
 # Ansible Role: MailHog
 
-[![CI](https://github.com/geerlingguy/ansible-role-mailhog/workflows/CI/badge.svg?event=push)](https://github.com/geerlingguy/ansible-role-mailhog/actions?query=workflow%3ACI)
-
 Installs [MailHog](https://github.com/mailhog/MailHog), a Go-based SMTP server and web UI/API for displaying captured emails, on RedHat or Debian-based linux systems.
 
 Also installs [mhsendmail](https://github.com/mailhog/mhsendmail) so you can redirect system mail to MailHog's built-in SMTP server.
@@ -44,15 +42,23 @@ The version of the mhsendmail binary that will be installed. You can find the la
 
 The mhsendmail binary that will be installed. You can find the latest version or a 32-bit version by visiting the [mhsendmail project releases page](https://github.com/mailhog/mhsendmail/releases).
 
+Enviroment variables for [configuration](https://github.com/mailhog/MailHog/blob/master/docs/CONFIG.md) of mailhog are stored in dictionary.
+
+    mailhog_env:
+      MH_API_BIND_ADDR: "0.0.0.0:8025"
+      MH_UI_BIND_ADDR: "0.0.0.0:8025"
+      MH_SMTP_BIND_ADDR: "0.0.0.0:1025"
+
 ## Dependencies
 
-  - geerlingguy.daemonize
+None
+
 
 ## Example Playbook
 
     - hosts: servers
       roles:
-        - { role: geerlingguy.mailhog }
+        - { role: 5ok.mailhog }
 
 ## License
 
@@ -60,4 +66,6 @@ MIT / BSD
 
 ## Author Information
 
-This role was created in 2014 by [Jeff Geerling](https://www.jeffgeerling.com/), author of [Ansible for DevOps](https://www.ansiblefordevops.com/).
+This role was originaly created in 2014 by [Jeff Geerling](https://www.jeffgeerling.com/), author of [Ansible for DevOps](https://www.ansiblefordevops.com/).
+
+
