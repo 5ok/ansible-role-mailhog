@@ -7,6 +7,9 @@
     group: root
     state: directory
     mode: 0755
+  tags:
+    - mailhog
+    - mailhog:setup
 
 - name: Download MailHog and mhsendmail binaries.
   ansible.builtin.get_url:
@@ -20,7 +23,9 @@
       dest: "{{ mailhog_install_dir }}/mailhog"
     - url: "{{ mhsendmail_binary_url }}"
       dest: "{{ mailhog_install_dir }}/mhsendmail"
-
+  tags:
+    - mailhog
+    - mailhog:packages
 
 - name: Create mailhoh enviroment file
   ansible.builtin.template:
@@ -29,6 +34,9 @@
     owner: root
     group: root
     mode: 0644
+  tags:
+    - mailhog
+    - mailhog:config
 
 - name: Copy mailhog systemd unit file into place (for systemd systems).
   ansible.builtin.template:
@@ -38,9 +46,15 @@
     group: root
     mode: 0755
   when: "ansible_service_mgr == 'systemd'"
+  tags:
+    - mailhog
+    - mailhog:service
 
 - name: Ensure mailhog is enabled and will start on boot.
   ansible.builtin.service:
     name: mailhog
     state: started
     enabled: true
+  tags:
+    - mailhog
+    - mailhog:service
